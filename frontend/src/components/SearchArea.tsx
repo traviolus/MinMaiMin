@@ -252,12 +252,12 @@ export default function SearchArea() {
                         <Grid item xs={1} />
 
                         <Grid item xs={3} />
-                        <Grid item xs={3} style={{marginTop: '10px'}}>
+                        <Grid item xs={3} style={{margin: '15px auto'}}>
                             <Button variant='contained' color='primary' size='large' className={classes.submitButton} onClick={handleSubmit}>
                                 คำนวณ
                             </Button>
                         </Grid>
-                        <Grid item xs={3} style={{marginTop: '10px'}}>
+                        <Grid item xs={3} style={{margin: '15px auto'}}>
                             <Button variant='contained' size='large' onClick={handleClearData}>
                                 ล้างข้อมูล
                             </Button>
