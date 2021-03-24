@@ -254,7 +254,7 @@ export default function SearchArea() {
                         <Grid item xs={3} />
                         <Grid item xs={3} style={{margin: '15px auto'}}>
                             <Button variant='contained' color='primary' size='large' className={classes.submitButton} onClick={handleSubmit}>
-                                คำนวณ
+                                ประเมิน
                             </Button>
                         </Grid>
                         <Grid item xs={3} style={{margin: '15px auto'}}>
