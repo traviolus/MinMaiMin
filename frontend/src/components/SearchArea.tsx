@@ -10,13 +10,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormLabel from '@material-ui/core/FormLabel';
+
+const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
         root: {
-            width: '60%',
+            width: '75%',
             alignItems: 'center',
             margin: 'auto auto'
         },
@@ -41,9 +41,9 @@ export default function SearchArea() {
     const [text, setText] = useState<string | null>('');
     const [victim, setVictim] = useState<boolean | null>(null);
     const [thirdPerson, setThirdPerson] = useState<boolean | null>(null);
-    const [situation, setSituation] = useState<Array<string>>(['inperson', 'public', 'chat', 'social', 'videocall']);
-    const [reaction, setReaction] = useState<boolean | null>();
-    const [future, setFuture] = useState<boolean | null>();
+    const [situation, setSituation] = useState<number | null>(null);
+    const [reaction, setReaction] = useState<boolean | null>(null);
+    const [future, setFuture] = useState<boolean | null>(null);
 
     function handleDateChange(date: Date | null) {
         setDate(date);
@@ -53,24 +53,30 @@ export default function SearchArea() {
         setText(e);
     }
 
-    function handleVictimChange(e: boolean){
+    function handleVictimChange(e: boolean) {
         setVictim(e);
     }
     
-    function handleThirdPersonChange(e: boolean){
+    function handleThirdPersonChange(e: boolean) {
         setThirdPerson(e);
     }
 
-    const mapSituation = situation.map(mapSituation => mapSituation)
+    function handleSituationChange(e: string) {
+        setSituation(parseInt(e));
+    }
 
-    const handleSituationChange = (e: string) => console.log((situation[parseInt(e)]))
+    function handleReactionChange(e: boolean) {
+        setReaction(e);
+    }
 
-    // function handleSituationChange(e: boolean){
-    //     setSituation(e);
-    // }
+    function handleFutureChange(e: boolean) {
+        setFuture(e);
+    }
 
     function handleSubmit() {
-        return
+        if (typeof(situation) === 'number') {
+            console.log(text, victim, thirdPerson, situationArray[situation], reaction, future, date);
+        }
     }
 
     function str2bool(value: string) {
@@ -100,23 +106,11 @@ export default function SearchArea() {
                             onChange={(e) => {handleTextChange(e.target.value);}}
                             />
                         </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
-                            ยืนยันผู้เสียหายได้?
-                            <RadioGroup aria-label="ผู้เสียหาย" name="ผู้เสียหาย" value={victim} onChange={(e) => {handleVictimChange(str2bool(e.target.value))}}>
-                                <FormControlLabel value={true} control={<Radio />} label="ยืนยันได้" />
-                                <FormControlLabel value={false} control={<Radio />} label="ไม่สามารถยืนยันได้" />
-                            </RadioGroup>
-                        </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
-                            มีบุคคลที่สามหรือไม่?
-                            <RadioGroup aria-label="บุคคลที่สาม" name="บุคคลที่สาม" value={thirdPerson} onChange={(e) => {handleThirdPersonChange(str2bool(e.target.value))}}>
-                                <FormControlLabel value={true} control={<Radio />} label="มี" />
-                                <FormControlLabel value={false} control={<Radio />} label="ไม่มี" />
-                            </RadioGroup>
-                        </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
+
+                        <Grid item xs={1} />
+                        <Grid item xs={10} className={classes.dropdown}>
                             โดนด่ายังไง?
-                            <RadioGroup aria-label="สถานการณ์" name="สถานการณ์" value={mapSituation} onChange={(e) => handleSituationChange(e.target.value)}>
+                            <RadioGroup row aria-label="สถานการณ์" name="สถานการณ์" value={situation} onChange={(e) => handleSituationChange(e.target.value)}>
                                 <FormControlLabel value={0} control={<Radio />} label="ต่อหน้า" />
                                 <FormControlLabel value={1} control={<Radio />} label="ในที่สาธารณะ" />
                                 <FormControlLabel value={2} control={<Radio />} label="ในแชทส่วนตัว" />
@@ -124,16 +118,42 @@ export default function SearchArea() {
                                 <FormControlLabel value={4} control={<Radio />} label="โทร / วิดิโอคอล" />
                             </RadioGroup>
                         </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
-                            ด่ากันไปมาไหม?
-                        </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
-                            เป็นเหตุการณ์ในอนาคตหรือไม่?
-                        </Grid>
-                        <Grid item xs={4} className={classes.dropdown}>
-                            ITEM6
-                        </Grid>
+                        <Grid item xs={1} />
 
+                        <Grid item xs={1} />
+                        <Grid item xs={5} className={classes.dropdown}>
+                            ยืนยันผู้เสียหายได้?
+                            <RadioGroup aria-label="ผู้เสียหาย" name="ผู้เสียหาย" value={victim} onChange={(e) => handleVictimChange(str2bool(e.target.value))}>
+                                <FormControlLabel value={true} control={<Radio />} label="ยืนยันได้" />
+                                <FormControlLabel value={false} control={<Radio />} label="ไม่สามารถยืนยันได้" />
+                            </RadioGroup>
+                        </Grid>
+                        <Grid item xs={5} className={classes.dropdown}>
+                            มีบุคคลที่สามหรือไม่?
+                            <RadioGroup aria-label="บุคคลที่สาม" name="บุคคลที่สาม" value={thirdPerson} onChange={(e) => handleThirdPersonChange(str2bool(e.target.value))}>
+                                <FormControlLabel value={true} control={<Radio />} label="มี" />
+                                <FormControlLabel value={false} control={<Radio />} label="ไม่มี" />
+                            </RadioGroup>
+                        </Grid>
+                        <Grid item xs={1} />
+                        
+                        <Grid item xs={1} />
+                        <Grid item xs={5} className={classes.dropdown}>
+                            ด่ากันไปมาไหม?
+                            <RadioGroup aria-label="ตอบโต้" name="ตอบโต้" value={reaction} onChange={(e) => handleReactionChange(str2bool(e.target.value))}>
+                                <FormControlLabel value={true} control={<Radio />} label="มีการตอบโต้กลับ" />
+                                <FormControlLabel value={false} control={<Radio />} label="ไม่มีการตอบโต้" />
+                            </RadioGroup>
+                        </Grid>
+                        <Grid item xs={5} className={classes.dropdown}>
+                            เป็นเหตุการณ์ในอนาคตหรือไม่?
+                            <RadioGroup aria-label="อนาคต" name="อนาคต" value={future} onChange={(e) => handleFutureChange(str2bool(e.target.value))}>
+                                <FormControlLabel value={true} control={<Radio />} label="เป็น" />
+                                <FormControlLabel value={false} control={<Radio />} label="ไม่เป็น" />
+                            </RadioGroup>
+                        </Grid>
+                        <Grid item xs={1} />
+                        
                         <Grid item xs={12}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={thLocale}>
                                 <KeyboardDatePicker
@@ -152,7 +172,7 @@ export default function SearchArea() {
 
                         <Grid item xs={3} />
                         <Grid item xs={3}>
-                            <Button variant='contained' color='primary' size='large' className={classes.submitButton}>
+                            <Button variant='contained' color='primary' size='large' className={classes.submitButton} onClick={handleSubmit}>
                                 คำนวณ
                             </Button>
                         </Grid>
