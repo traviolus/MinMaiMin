@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
 
@@ -50,6 +51,7 @@ export default function SearchArea() {
     const [situation, setSituation] = useState<number | null>(null);
     const [reaction, setReaction] = useState<boolean | null>(null);
     const [future, setFuture] = useState<boolean | null>(null);
+    const [snackOpen, setSnackOpen] = useState(false);
 
     function handleDateChange(date: Date | null) {
         setDate(date);
@@ -78,6 +80,24 @@ export default function SearchArea() {
     function handleFutureChange(e: boolean) {
         setFuture(e);
     }
+
+    function handleClearData() {
+        setDate(new Date())
+        setText('')
+        setVictim(null)
+        setThirdPerson(null)
+        setSituation(null)
+        setReaction(null) 
+        setFuture(null)
+        setSnackOpen(true);
+    }
+    
+    function handleSnackClose(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackOpen(false);
+    };
 
     function handleSubmit() {
         if (typeof(situation) === 'number') {
@@ -217,7 +237,7 @@ export default function SearchArea() {
                             </Button>
                         </Grid>
                         <Grid item xs={3}>
-                            <Button variant='contained' size='large'>
+                            <Button variant='contained' size='large' onClick={handleClearData}>
                                 ล้างข้อมูล
                             </Button>
                         </Grid>
@@ -225,6 +245,23 @@ export default function SearchArea() {
                     </Grid>
                 </FormControl>
             </form>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={snackOpen}
+                autoHideDuration={6000}
+                onClose={handleSnackClose}
+                message="ล้างข้อมูลเสร็จสิ้น"
+                action={
+                <React.Fragment>
+                    <Button color="secondary" size="small" onClick={handleSnackClose}>
+                    ปิด
+                    </Button>
+                </React.Fragment>
+                }
+            />
         </div>
     )
 }
