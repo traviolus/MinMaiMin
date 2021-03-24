@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             background: '#ff7b54'
         },
+        toolbar: theme.mixins.toolbar,
         menuButton: {
             marginRight: theme.spacing(2),
         },
@@ -27,7 +28,7 @@ export default function NavBar() {
     const classes = useStyles();
 
     return (
-        <div>
+        <div className={classes.toolbar}>
             <AppBar position="fixed" className={classes.root}>
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
