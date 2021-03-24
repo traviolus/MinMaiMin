@@ -15,10 +15,10 @@ import Grid from "@material-ui/core/grid";
 // );
 
 export default function ResultButtons() {
-
   return (
     <div>
       <Grid container spacing={3}>
+        <Grid item xs={3} />
         <Grid item xs={3}>
           <Button variant="contained" size="large">
             ย้อนกลับ
@@ -29,6 +29,7 @@ export default function ResultButtons() {
             ติดต่อทนาย
           </Button>
         </Grid>
+        <Grid item xs={3} />
       </Grid>
     </div>
   );
