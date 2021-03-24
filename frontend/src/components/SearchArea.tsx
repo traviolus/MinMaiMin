@@ -14,6 +14,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
+import Paper from '@material-ui/core/Paper';
 
 const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
 
@@ -38,6 +39,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         rowRadio: {
             justifyContent: 'space-around',
+        },
+        paper: {
+            padding: '10px 20px',
+            borderRadius: 20
         }
     })
 );
@@ -119,6 +124,7 @@ export default function SearchArea() {
                 <FormControl component="fieldset" className={classes.formControl}>
                     <Grid container spacing={3} justify='flex-start'>
                         <Grid item xs={12}>
+                            <Paper elevation={2} style={{borderRadius: 5}}>
                             <TextField
                             id="outlined-multiline-static"
                             label="ใส่ข้อความที่ต้องการประมวลผลที่นี่"
@@ -131,10 +137,12 @@ export default function SearchArea() {
                             className={classes.textField}
                             onChange={(e) => {handleTextChange(e.target.value);}}
                             />
+                            </Paper>
                         </Grid>
 
                         <Grid item xs={1} />
                         <Grid item xs={10} className={classes.dropdown}>
+                        <Paper elevation={2} className={classes.paper}>
                             โดนด่ายังไง?
                             <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                 <IconButton aria-label="info">
@@ -148,11 +156,13 @@ export default function SearchArea() {
                                 <FormControlLabel value={3} control={<Radio />} label="โพสบนโซเชียลมีเดีย" />
                                 <FormControlLabel value={4} control={<Radio />} label="โทร / วิดิโอคอล" />
                             </RadioGroup>
+                        </Paper>
                         </Grid>
                         <Grid item xs={1} />
 
                         <Grid item xs={1} />
                         <Grid item xs={5} className={classes.dropdown}>
+                            <Paper elevation={2} className={classes.paper}>
                             ยืนยันผู้เสียหายได้?
                             <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                 <IconButton aria-label="info">
@@ -163,8 +173,10 @@ export default function SearchArea() {
                                 <FormControlLabel value={true} control={<Radio />} label="ยืนยันได้" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่สามารถยืนยันได้" />
                             </RadioGroup>
+                            </Paper>
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
+                            <Paper elevation={2} className={classes.paper}>
                             มีบุคคลที่สามหรือไม่?
                             <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                 <IconButton aria-label="info">
@@ -175,11 +187,13 @@ export default function SearchArea() {
                                 <FormControlLabel value={true} control={<Radio />} label="มี" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่มี" />
                             </RadioGroup>
+                            </Paper>
                         </Grid>
                         <Grid item xs={1} />
                         
                         <Grid item xs={1} />
                         <Grid item xs={5} className={classes.dropdown}>
+                            <Paper elevation={2} className={classes.paper}>
                             ด่ากันไปมาไหม?
                             <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                 <IconButton aria-label="info">
@@ -190,8 +204,10 @@ export default function SearchArea() {
                                 <FormControlLabel value={true} control={<Radio />} label="มีการตอบโต้กลับ" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่มีการตอบโต้" />
                             </RadioGroup>
+                            </Paper>
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
+                            <Paper elevation={2} className={classes.paper}>
                             เป็นเหตุการณ์ในอนาคตหรือไม่?
                             <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                 <IconButton aria-label="info">
@@ -202,11 +218,14 @@ export default function SearchArea() {
                                 <FormControlLabel value={true} control={<Radio />} label="เป็น" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่เป็น" />
                             </RadioGroup>
+                            </Paper>
                         </Grid>
                         <Grid item xs={1} />
                         
-                        <Grid item xs={12}>
-                            <p style={{marginBottom: '0px'}}>
+                        <Grid item xs={1} />
+                        <Grid item xs={10}>
+                            <Paper elevation={2} className={classes.paper}>
+                            <p style={{marginBottom: '0px', marginTop: '0px'}}>
                                 วันที่เกิดเหตุการณ์
                                 <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
                                     <IconButton aria-label="info">
@@ -216,7 +235,7 @@ export default function SearchArea() {
                             </p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={thLocale}>
                                 <KeyboardDatePicker
-                                style={{width: '15%'}}
+                                style={{width: '20%'}}
                                 margin='normal'
                                 id="date-picker-dialog"
                                 label=''
@@ -228,15 +247,17 @@ export default function SearchArea() {
                                 }}
                                 />
                             </MuiPickersUtilsProvider>
+                            </Paper>
                         </Grid>
+                        <Grid item xs={1} />
 
                         <Grid item xs={3} />
-                        <Grid item xs={3}>
+                        <Grid item xs={3} style={{marginTop: '10px'}}>
                             <Button variant='contained' color='primary' size='large' className={classes.submitButton} onClick={handleSubmit}>
                                 คำนวณ
                             </Button>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={3} style={{marginTop: '10px'}}>
                             <Button variant='contained' size='large' onClick={handleClearData}>
                                 ล้างข้อมูล
                             </Button>
