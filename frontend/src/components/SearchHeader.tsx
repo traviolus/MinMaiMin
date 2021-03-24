@@ -16,7 +16,7 @@ export default function SearchHeader() {
 
     return (
         <div className={classes.root}>
-            HEADER
+            <h1>กรอกรายละเอียดเพื่อประเมินโอกาสในการฟ้องร้องคดีความหมิ่นประมาท</h1>
         </div>
     )
 }
