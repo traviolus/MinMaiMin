@@ -11,13 +11,14 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,
-            background: '#000000'
+            background: '#ff7b54'
         },
         menuButton: {
             marginRight: theme.spacing(2),
         },
         title: {
             flexGrow: 1,
+            marginLeft: '1.75em'
         },
     })
 );
@@ -27,15 +28,15 @@ export default function NavBar() {
 
     return (
         <div>
-            <AppBar position="sticky" className={classes.root}>
+            <AppBar position="fixed" className={classes.root}>
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-                MinMaiMin
+                หมิ่นไม่หมิ่น
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit">ลงชื่อเข้าใช้</Button>
             </Toolbar>
         </AppBar>
         </div>
