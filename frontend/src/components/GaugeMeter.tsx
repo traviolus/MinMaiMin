@@ -29,6 +29,8 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
           width={400}
           height={320}
           color={colorHex}
+          topLabelStyle={{color: 'black'}}
+          valueFormatter={number => `${number.toString()}%`}
           label="โอกาสฟ้องร้องสำเร็จ"
         />
       </div>
