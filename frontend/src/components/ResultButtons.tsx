@@ -104,7 +104,7 @@ export default function ResultButtons() {
             </DialogTitle>
             <DialogContent dividers>
               <Typography gutterBottom>
-              ขณะนี้ ทนายที่กำลังให้บริการเต็มหมดทุกคู่สาย กรุณารอซักครู่
+              ขณะนี้ทนายที่กำลังให้บริการเต็มหมดทุกคู่สาย กรุณารอซักครู่
               </Typography>
             </DialogContent>
             <DialogActions>
