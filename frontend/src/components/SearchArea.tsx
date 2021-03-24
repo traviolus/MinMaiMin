@@ -10,6 +10,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 
 const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
 
@@ -31,6 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         formControl: {
             margin: theme.spacing(3),
+        },
+        rowRadio: {
+            justifyContent: 'space-around',
         }
     })
 );
@@ -110,7 +116,12 @@ export default function SearchArea() {
                         <Grid item xs={1} />
                         <Grid item xs={10} className={classes.dropdown}>
                             โดนด่ายังไง?
-                            <RadioGroup row aria-label="สถานการณ์" name="สถานการณ์" value={situation} onChange={(e) => handleSituationChange(e.target.value)}>
+                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <IconButton aria-label="info">
+                                <InfoIcon fontSize='small' />
+                                </IconButton>
+                            </Tooltip>
+                            <RadioGroup row className={classes.rowRadio} aria-label="สถานการณ์" name="สถานการณ์" value={situation} onChange={(e) => handleSituationChange(e.target.value)}>
                                 <FormControlLabel value={0} control={<Radio />} label="ต่อหน้า" />
                                 <FormControlLabel value={1} control={<Radio />} label="ในที่สาธารณะ" />
                                 <FormControlLabel value={2} control={<Radio />} label="ในแชทส่วนตัว" />
@@ -123,6 +134,11 @@ export default function SearchArea() {
                         <Grid item xs={1} />
                         <Grid item xs={5} className={classes.dropdown}>
                             ยืนยันผู้เสียหายได้?
+                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <IconButton aria-label="info">
+                                <InfoIcon fontSize='small' />
+                                </IconButton>
+                            </Tooltip>
                             <RadioGroup aria-label="ผู้เสียหาย" name="ผู้เสียหาย" value={victim} onChange={(e) => handleVictimChange(str2bool(e.target.value))}>
                                 <FormControlLabel value={true} control={<Radio />} label="ยืนยันได้" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่สามารถยืนยันได้" />
@@ -130,6 +146,11 @@ export default function SearchArea() {
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
                             มีบุคคลที่สามหรือไม่?
+                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <IconButton aria-label="info">
+                                <InfoIcon fontSize='small' />
+                                </IconButton>
+                            </Tooltip>
                             <RadioGroup aria-label="บุคคลที่สาม" name="บุคคลที่สาม" value={thirdPerson} onChange={(e) => handleThirdPersonChange(str2bool(e.target.value))}>
                                 <FormControlLabel value={true} control={<Radio />} label="มี" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่มี" />
@@ -140,6 +161,11 @@ export default function SearchArea() {
                         <Grid item xs={1} />
                         <Grid item xs={5} className={classes.dropdown}>
                             ด่ากันไปมาไหม?
+                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <IconButton aria-label="info">
+                                <InfoIcon fontSize='small' />
+                                </IconButton>
+                            </Tooltip>
                             <RadioGroup aria-label="ตอบโต้" name="ตอบโต้" value={reaction} onChange={(e) => handleReactionChange(str2bool(e.target.value))}>
                                 <FormControlLabel value={true} control={<Radio />} label="มีการตอบโต้กลับ" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่มีการตอบโต้" />
@@ -147,6 +173,11 @@ export default function SearchArea() {
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
                             เป็นเหตุการณ์ในอนาคตหรือไม่?
+                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <IconButton aria-label="info">
+                                <InfoIcon fontSize='small' />
+                                </IconButton>
+                            </Tooltip>
                             <RadioGroup aria-label="อนาคต" name="อนาคต" value={future} onChange={(e) => handleFutureChange(str2bool(e.target.value))}>
                                 <FormControlLabel value={true} control={<Radio />} label="เป็น" />
                                 <FormControlLabel value={false} control={<Radio />} label="ไม่เป็น" />
@@ -155,11 +186,20 @@ export default function SearchArea() {
                         <Grid item xs={1} />
                         
                         <Grid item xs={12}>
+                            <p style={{marginBottom: '0px'}}>
+                                วันที่เกิดเหตุการณ์
+                                <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                    <IconButton aria-label="info">
+                                    <InfoIcon fontSize='small' />
+                                    </IconButton>
+                                </Tooltip>
+                            </p>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={thLocale}>
                                 <KeyboardDatePicker
+                                style={{width: '15%'}}
                                 margin='normal'
                                 id="date-picker-dialog"
-                                label='วันที่เกิดเหตุการณ์'
+                                label=''
                                 format='dd/MM/yyyy'
                                 value={date}
                                 onChange={dateData => handleDateChange(dateData)}
