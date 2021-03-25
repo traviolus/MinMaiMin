@@ -1,25 +1,26 @@
 import React from "react";
 import GaugeMeter from "./GaugeMeter";
 import ResultButtons from "./ResultButtons";
+import ReportCard from "./ReportCard";
+import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 
-interface AppProps {}
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: "75%",
+      alignItems: "center",
+      margin: "auto auto",
+    },
+  })
+);
 
-interface AppState {
-  value: number;
-}
-export default class ResultCard extends React.Component<AppProps, AppState> {
-
-  
-  constructor(props: AppProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <GaugeMeter />
-        <ResultButtons />
-      </div>
-    );
-  }
+export default function ResultCard() {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <GaugeMeter />
+      <ReportCard />
+      <ResultButtons />
+    </div>
+  );
 }
