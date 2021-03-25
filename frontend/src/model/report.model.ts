@@ -3,4 +3,5 @@ export interface Report {
     case?: string,
     prescribedDate?: Date
     chance?: number,
+    otherLawSections?: string,
 }

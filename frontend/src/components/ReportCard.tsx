@@ -30,6 +30,7 @@ function ReportCard(props: Report) {
       <Paper elevation={3} className={classes.paper}>
         <p style={{fontWeight: 'bold'}}>รายงานผล</p>
         <p>ประมวลกฎหมายที่เกี่ยวข้อง: {props.title ?? "หมิ่นประมาท มาตรา 326"}</p>
+				<p>กฎหมายที่ควรพิจารณา: {props.otherLawSections ?? 'ประมวลอาญา ม.393, พ.ร.บ.คอมพิวเตอร์ ม.14'}</p>
         <p>
           ดำเนินการฟ้องร้องได้ถึงวันที่<span> </span>
           {dateFormat(props.prescribedDate ?? new Date())}
