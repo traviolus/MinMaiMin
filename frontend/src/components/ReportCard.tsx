@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "0% 7.5% 5% 7.5%",
     },
     paper: {
-      padding: "10px 20px",
+      padding: "5px 20px",
       borderRadius: 10,
     },
   })
@@ -28,8 +28,8 @@ function ReportCard(props: Report) {
   return (
     <div className={classes.root}>
       <Paper elevation={3} className={classes.paper}>
-        รายงานผล
-        <p>ประมวลกฎหมายที่อาจจะเกี่ยวข้อง: {props.title ?? "หมิ่นประมาท มาตรา 326"}</p>
+        <p style={{fontWeight: 'bold'}}>รายงานผล</p>
+        <p>ประมวลกฎหมายที่เกี่ยวข้อง: {props.title ?? "หมิ่นประมาท มาตรา 326"}</p>
         <p>
           ดำเนินการฟ้องร้องได้ถึงวันที่<span> </span>
           {dateFormat(props.prescribedDate ?? new Date())}
