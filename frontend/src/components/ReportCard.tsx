@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       margin: 0,
       padding: "0% 7.5% 5% 7.5%",
+      display: "flex",
     },
     paper: {
       padding: "5px 20px",
@@ -31,15 +32,20 @@ function ReportCard(props: Report) {
       <Paper elevation={3} className={classes.paper}>
         <p style={{ fontWeight: "bold" }}>รายงานผล</p>
         <p>
-          ประมวลกฎหมายที่เกี่ยวข้อง: {props.title ?? "หมิ่นประมาท มาตรา 326"}
+          กฎหมายที่เกี่ยวข้อง: {props.title ?? "ประมวลกฎหมายอาญา มาตรา 326"}
         </p>
         <p>
           ดำเนินการฟ้องร้องได้ถึงวันที่<span> </span>
           {dateFormat(props.prescribedDate ?? new Date())}
         </p>
-        <Typography color="textSecondary" gutterBottom style={{fontSize:"small"}}>
+        <Typography
+          color="textSecondary"
+          gutterBottom
+          style={{ fontSize: "small" }}
+        >
           หมายเหตุ: กฎหมายที่ควรพิจารณา{" "}
-          {props.otherLawSections ?? "ประมวลอาญา ม.393, พ.ร.บ.คอมพิวเตอร์ ม.14"}
+          {props.otherLawSections ??
+            "ประมวลกฎหมายอาญา มาตรา 326, พ.ร.บ.คอมพิวเตอร์ฯ มาตรา 14"}
         </Typography>
       </Paper>
     </div>
