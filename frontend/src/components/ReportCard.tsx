@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       margin: 0,
       padding: "0% 7.5% 5% 7.5%",
-      display: "flex",
     },
     paper: {
       padding: "5px 20px",
