@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import GaugeMeter from "./GaugeMeter";
 import ResultButtons from "./ResultButtons";
 import ReportCard from "./ReportCard";
@@ -14,13 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ResultCard() {
+export default function ResultCard(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <GaugeMeter />
-      <ReportCard />
-      <ResultButtons />
+      <ReportCard props={props}/>
+      <ResultButtons props={props}/>
     </div>
   );
 }

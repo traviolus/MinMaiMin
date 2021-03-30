@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-function ReportCard(props: Report) {
+function ReportCard(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -35,7 +35,8 @@ function ReportCard(props: Report) {
         </p>
         <p>
           ดำเนินการฟ้องร้องได้ถึงวันที่<span> </span>
-          {dateFormat(props.prescribedDate ?? new Date())}
+          {/* {dateFormat(props.prescribedDate ?? new Date())} */}
+          {dateFormat(props.props.props.newDate)}
         </p>
         <Typography color="textSecondary" gutterBottom style={{fontSize:"small"}}>
           หมายเหตุ: กฎหมายที่ควรพิจารณา{" "}

@@ -1,6 +1,5 @@
 import React from "react";
 import Gauge from "react-svg-gauge";
-import Button from "@material-ui/core/Button";
 
 interface AppProps {}
 
@@ -12,7 +11,7 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      value: 59,
+      value: 32,
     };
   }
   render() {

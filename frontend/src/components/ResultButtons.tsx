@@ -66,7 +66,7 @@ const DialogActions = withStyles((theme: Theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function ResultButtons() {
+export default function ResultButtons(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -76,12 +76,17 @@ export default function ResultButtons() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function handleHide() {
+    props.props.props.handleSubmit();
+  }
+
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{marginBottom: '30px'}}>
         <Grid item xs={3} />
         <Grid item xs={3}>
-          <Button variant="contained" size="large">
+          <Button variant="contained" size="large" onClick={handleHide}>
             ย้อนกลับ
           </Button>
         </Grid>

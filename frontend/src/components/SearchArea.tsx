@@ -15,8 +15,21 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Paper from '@material-ui/core/Paper';
+import Modal from '@material-ui/core/Modal';
 
 const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
+
+function getModalStyle() {
+    const top = 50;
+    const left = 50;
+  
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      transform: `translate(-${top}%, -${left}%)`,
+    };
+  }
+  
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -43,11 +56,19 @@ const useStyles = makeStyles((theme: Theme) =>
         paper: {
             padding: '10px 20px',
             borderRadius: 20
-        }
+        },
+        modalPaper: {
+            position: 'absolute',
+            width: 400,
+            backgroundColor: theme.palette.background.paper,
+            border: '2px solid #000',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+          }
     })
 );
 
-export default function SearchArea() {
+export default function SearchArea(props) {
     const classes = useStyles();
     const [date, setDate] = useState<Date | null>(new Date())
     const [text, setText] = useState<string | null>('');
@@ -57,6 +78,25 @@ export default function SearchArea() {
     const [reaction, setReaction] = useState<boolean | null>(null);
     const [future, setFuture] = useState<boolean | null>(null);
     const [snackOpen, setSnackOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalStyle] = useState(getModalStyle);
+
+    const modalBody = (
+        <div style={modalStyle} className={classes.modalPaper}>
+          <h2 id="simple-modal-title">เลือกสถานการณ์</h2>
+          <p id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+        </div>
+      );
+
+    const handleModalOpen = () => {
+      setModalOpen(true);
+    };
+  
+    const handleModalClose = () => {
+      setModalOpen(false);
+    };
 
     function handleDateChange(date: Date | null) {
         setDate(date);
@@ -105,15 +145,14 @@ export default function SearchArea() {
     };
 
     function handleSubmit() {
-        if (typeof(situation) === 'number') {
-            console.log(text, victim, thirdPerson, situationArray[situation], reaction, future, date);
-        }
+        props.props.props.handleSubmit();
+        props.props.props.handleDateCalculate(date);
     }
 
     function str2bool(value: string) {
         if (value && typeof value === "string") {
-             if (value.toLowerCase() === "true") return true;
-             if (value.toLowerCase() === "false") return false;
+            if (value.toLowerCase() === "true") return true;
+            if (value.toLowerCase() === "false") return false;
         }
         return false;
     }
@@ -144,7 +183,7 @@ export default function SearchArea() {
                         <Grid item xs={10} className={classes.dropdown}>
                         <Paper elevation={2} className={classes.paper}>
                             โดนด่ายังไง?
-                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                            <Tooltip title='สถานการณ์ขณะที่ถูกด่า'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -164,7 +203,7 @@ export default function SearchArea() {
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
                             ยืนยันผู้เสียหายได้?
-                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                            <Tooltip title='สามารถระบุผู้ที่ถูกด่าได้ว่าเป็นใคร เช่น ระบุชื่อหรือมีการโพสต์รูปคนนั้น'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -178,7 +217,7 @@ export default function SearchArea() {
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
                             มีบุคคลที่สามหรือไม่?
-                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                            <Tooltip title='บุคคลที่สามคือ บุคคลภายนอก เช่นมีการเล่าให้ผู้อื่นฟังหรือมีการโพสต์ลงเฟสบุ๊ค'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -194,8 +233,8 @@ export default function SearchArea() {
                         <Grid item xs={1} />
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
-                            ด่ากันไปมาไหม?
-                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                            มีการโต้ตอบกลับหรือไม่?
+                            <Tooltip title='ด่ากันไปมา หรือมีการโต้ตอบระหว่างกันจะเข้าข้อยกเว้นที่ทำให้ไม่ผิดหมิ่นประมาท'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -209,7 +248,7 @@ export default function SearchArea() {
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
                             เป็นเหตุการณ์ในอนาคตหรือไม่?
-                            <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                            <Tooltip title='เหตุการณ์ในอนาคต คือเหตุการณ์ที่ยังมาไม่ถึง เช่น ชาติหน้า อีก 10 ปีข้างหน้า'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -227,7 +266,7 @@ export default function SearchArea() {
                             <Paper elevation={2} className={classes.paper}>
                             <p style={{marginBottom: '0px', marginTop: '0px'}}>
                                 วันที่เกิดเหตุการณ์
-                                <Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec finibus nulla, in porta eros. Nulla tempor diam a ligula laoreet, nec lobortis sapien dapibus. Integer auctor eros at ligula maximus, non faucibus ante bibendum. Nunc in interdum ex. Donec ut tristique risus. Ut varius ex vel erat dapibus, vel euismod lectus venenatis. Quisque vel nibh libero. Pellentesque et ex enim. Donec sed felis eu tortor eleifend sagittis in vitae nisi. Integer ut quam congue sem eleifend porta.">
+                                <Tooltip title='ใช้เพื่อคำนวณว่าคดีขาดอายุความหรือยัง'>
                                     <IconButton aria-label="info">
                                     <InfoIcon fontSize='small' />
                                     </IconButton>
