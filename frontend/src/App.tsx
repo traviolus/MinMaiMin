@@ -5,6 +5,7 @@ import SearchPage from './components/SearchPage';
 import ResultCard from './components/ResultCard';
 import LoadingBar from './components/LoadingBar';
 
+
 function App() {
   const [result, setResult] = useState(false);
   const [resultDate, setResultDate] = useState(new Date());

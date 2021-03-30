@@ -25,16 +25,21 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
       <div>
         <Gauge
           value={this.state.value}
-          width={400}
+          width={475}
           height={320}
           color={colorHex}
-          topLabelStyle={{color: 'black'}}
-          valueFormatter={number => `${number.toString()}%`}
-          label="โอกาสฟ้องร้องสำเร็จ"
+          topLabelStyle={{color: 'black', fontSize: '38px'}}
+          valueFormatter={this.formatter}
+          label="เข้าข่ายมีความผิดหมิ่นประมาท"
         />
       </div>
     );
   }
+
+  private formatter(val: number): string {
+    return `${val.toString()}%`;
+  }
+
   private getHexColor(value: number): string {
     const string = value.toString(16);
     return string.length === 1 ? "0" + string : string;
