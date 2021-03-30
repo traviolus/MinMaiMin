@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Backdrop from '@material-ui/core/Backdrop';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -14,14 +15,19 @@ const useStyles = makeStyles((theme: Theme) =>
         backdrop: {
             zIndex: theme.zIndex.drawer + 1,
             color: '#fff'
+        },
+        paper: {
+            maxWidth: '200',
+            maxHeight: '200'
         }
     })
 );
 
-export default function LoadingBar(handle) {
+export default function LoadingModal(handle) {
     const classes = useStyles();
     const [progress, setProgress] = useState(0);
     const [open, setOpen] = useState(false);
+    const [isMount, setIsMount] = useState(true);
 
     const handleClose = () => {
         setOpen(false);
@@ -30,24 +36,34 @@ export default function LoadingBar(handle) {
     const handleToggle = () => {
         setOpen(!open);
     };
+    
+    function startTimer() {
+        return setInterval(() => {
+            setProgress((prevProgress) => {
+                if (prevProgress === 153) {
+                    setOpen(false);
+                }
+                return prevProgress + 1;
+            });
+        }, 25);
+    }
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
-        }, 600);
+        if (isMount) {
+            setIsMount(false);
+            return;
+        }
+        const timer = startTimer();
 
-        return () => {
-            clearInterval(timer);
-            handleClose();
-            handle = false;
-        };
-    }, []);
+        handleToggle();
+    }, [handle.props]);
 
     return (
         <div className={classes.root}>
-            {console.log(handle)}
             <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-                <CircularProgress variant='determinate' value={progress} />
+                <Paper elevation={24}>
+                    <CircularProgress variant='determinate' value={progress} style={{margin: '30px'}} size={100}/>
+                </Paper>
             </Backdrop>
         </div>
     );
