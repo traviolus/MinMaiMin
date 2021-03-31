@@ -77,6 +77,7 @@ export default function SearchArea(props) {
     const [situation, setSituation] = useState<number | null>(null);
     const [reaction, setReaction] = useState<boolean | null>(null);
     const [future, setFuture] = useState<boolean | null>(null);
+    const [question, setQuestion] = useState<boolean | null>(null);
     const [snackOpen, setSnackOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalStyle] = useState(getModalStyle);
@@ -126,6 +127,10 @@ export default function SearchArea(props) {
         setFuture(e);
     }
 
+    function handleQuestionChange(e: boolean) {
+        setQuestion(e);
+    }
+
     function handleClearData() {
         setDate(new Date())
         setText('')
@@ -134,6 +139,7 @@ export default function SearchArea(props) {
         setSituation(null)
         setReaction(null) 
         setFuture(null)
+        setQuestion(null)
         setSnackOpen(true);
     }
     
@@ -182,7 +188,7 @@ export default function SearchArea(props) {
                         <Grid item xs={1} />
                         <Grid item xs={10} className={classes.dropdown}>
                         <Paper elevation={2} className={classes.paper}>
-                            โดนด่ายังไง?
+                            โดนด่าอย่างไร?
                             <Tooltip title='สถานการณ์ขณะที่ถูกด่า'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
@@ -190,10 +196,10 @@ export default function SearchArea(props) {
                             </Tooltip>
                             <RadioGroup row className={classes.rowRadio} aria-label="สถานการณ์" name="สถานการณ์" value={situation} onChange={(e) => handleSituationChange(e.target.value)}>
                                 <FormControlLabel value={0} control={<Radio />} label="ต่อหน้า" />
-                                <FormControlLabel value={1} control={<Radio />} label="ในที่สาธารณะ" />
+                                <FormControlLabel value={1} control={<Radio />} label="ที่ชุมชน" />
                                 <FormControlLabel value={2} control={<Radio />} label="ในแชทส่วนตัว" />
-                                <FormControlLabel value={3} control={<Radio />} label="โพสบนโซเชียลมีเดีย" />
-                                <FormControlLabel value={4} control={<Radio />} label="โทร / วิดิโอคอล" />
+                                <FormControlLabel value={3} control={<Radio />} label="โพสต์บนโซเชียลมีเดีย" />
+                                <FormControlLabel value={4} control={<Radio />} label="โทร / วิดีโอคอล" />
                             </RadioGroup>
                         </Paper>
                         </Grid>
@@ -203,7 +209,7 @@ export default function SearchArea(props) {
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
                             ยืนยันผู้เสียหายได้?
-                            <Tooltip title='สามารถระบุผู้ที่ถูกด่าได้ว่าเป็นใคร เช่น ระบุชื่อหรือมีการโพสต์รูปคนนั้น'>
+                            <Tooltip title='สามารถระบุได้ว่าเราถูกด่า เช่น ระบุชื่อ, หรือโพสต์รูปเรา'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -216,8 +222,8 @@ export default function SearchArea(props) {
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
-                            มีบุคคลที่สามหรือไม่?
-                            <Tooltip title='บุคคลที่สามคือ บุคคลภายนอก เช่นมีการเล่าให้ผู้อื่นฟังหรือมีการโพสต์ลงเฟสบุ๊ค'>
+                            มีการด่าลับหลังหรือไม่?
+                            <Tooltip title='เช่น เล่าให้คนอื่นฟัง, โพสต์ลงโซเชียล'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
                                 </IconButton>
@@ -247,7 +253,7 @@ export default function SearchArea(props) {
                         </Grid>
                         <Grid item xs={5} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
-                            เป็นเหตุการณ์ในอนาคตหรือไม่?
+                            พูดถึงเหตุการณ์ในอนาคตหรือไม่?
                             <Tooltip title='เหตุการณ์ในอนาคต คือเหตุการณ์ที่ยังมาไม่ถึง เช่น ชาติหน้า อีก 10 ปีข้างหน้า'>
                                 <IconButton aria-label="info">
                                 <InfoIcon fontSize='small' />
@@ -260,7 +266,17 @@ export default function SearchArea(props) {
                             </Paper>
                         </Grid>
                         <Grid item xs={1} />
-                        
+                        <Grid item xs={1} />
+                        <Grid item xs={10} className={classes.dropdown}>
+                            <Paper elevation={2} className={classes.paper}>
+                            เป็นประโยคคำถามหรือไม่?
+                            <RadioGroup aria-label="อนาคต" name="อนาคต" value={question} onChange={(e) => handleQuestionChange(str2bool(e.target.value))}>
+                                <FormControlLabel value={true} control={<Radio />} label="เป็น" />
+                                <FormControlLabel value={false} control={<Radio />} label="ไม่เป็น" />
+                            </RadioGroup>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={1} />
                         <Grid item xs={1} />
                         <Grid item xs={10}>
                             <Paper elevation={2} className={classes.paper}>

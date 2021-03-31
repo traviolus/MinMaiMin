@@ -25,13 +25,13 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
       <div>
         <Gauge
           value={this.state.value}
-          width={475}
+          width={480}
           height={320}
           color={colorHex}
-          topLabelStyle={{color: 'black', fontSize: '38px', fontWeight: 'bold'}}
-          valueLabelStyle={{fontSize: '75px', fontWeight: 'bold'}}
+          topLabelStyle={{color: 'black', fontSize: '28px', fontWeight: 'bold'}}
+          valueLabelStyle={{fontSize: '73px', fontWeight: 'bold'}}
           valueFormatter={this.formatter}
-          label="เข้าข่ายมีความผิดหมิ่นประมาท"
+          label="โอกาสเข้าข่ายมีความผิดหมิ่นประมาท"
         />
       </div>
     );
