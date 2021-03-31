@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from routers import router
 
 app = FastAPI(
     title="MinMaiMin",
@@ -8,6 +9,8 @@ app = FastAPI(
     version="0.1",
     docs_url="/docs/"
 )
+
+app.include_router(router)
 
 @app.exception_handler(RequestValidationError)
 async def custom_validation_exception_handler(request, e):
