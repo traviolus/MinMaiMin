@@ -16,7 +16,7 @@ export default function SearchHeader() {
 
     return (
         <div className={classes.root}>
-            <h1>กรอกรายละเอียดเพื่อประเมินโอกาสเข้าข่ายหมิ่นประมาท</h1>
+            <h1>กรอกรายละเอียดประเมินโอกาสเข้าข่ายหมิ่นประมาท</h1>
         </div>
     )
 }
