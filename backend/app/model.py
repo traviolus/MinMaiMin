@@ -18,7 +18,7 @@ class DataCleaner:
         return x
 
     @staticmethod
-    def process_query(st, model, word2vec, max_len=100):
+    def process_query(st, model, word2vec, max_len=75):
         x = np.expand_dims(DataCleaner.preprocess(st, word2vec, max_len), 0)
         out = model.predict(x)[0, 1]
         return out
@@ -30,5 +30,5 @@ class MinmaiminModel:
 
     def predict(self, sentence):
         word2vec = word_vector.get_model()
-        output = DataCleaner.process_query(sentence, self.model, word2vec, 100)
+        output = DataCleaner.process_query(sentence, self.model, word2vec, 75)
         return output
