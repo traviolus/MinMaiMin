@@ -4,9 +4,14 @@ from pydantic import BaseModel
 
 from model import model_obj
 
+
 class Payload(BaseModel):
     msg: str
-    
+
+
+class ImagePayload(BaseModel):
+    uploadedFile: UploadFile
+
 
 router = APIRouter(
     prefix="/api",
@@ -21,5 +26,5 @@ def predict(payload: Payload):
     return JSONResponse(content={'result': result})
 
 @router.post('/ocr/')
-def image_to_text(file: UploadFile):
+def image_to_text(payload: ImagePayload):
     return JSONResponse(content={'result': ''})
