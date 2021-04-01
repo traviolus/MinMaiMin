@@ -33,6 +33,17 @@ class DataCleaner:
         out = model.predict(x)[0, 1]
         return out
 
+    @staticmethod
+    def preprocess_data(df, word2vec, max_len=75):
+        x = []
+        for i in tqdm_notebook(range(len(df))):
+            st = df['sentence'].iloc[i]
+            _x = np.expand_dims(preprocess(st, word2vec, max_len), 0)
+            x.append(_x)
+        x = np.concatenate(x)
+        y = np.array(df['y'])
+        return x, y
+
 
 class MinmaiminModel:
     def __init__(self):
@@ -42,6 +53,7 @@ class MinmaiminModel:
         self.word2vec = word_vector.get_model()
         self.deka = []
         self.idx = []
+        self.x, self.y = DataCleaner.preprocess_data(self.deka_file, self.word2vec, self.max_len)
 
         for i in range(len(self.deka_file)):
             self.deka.append([self.deka_file.iloc[i][1],self.deka_file.iloc[i][3]])
@@ -54,7 +66,7 @@ class MinmaiminModel:
         output = DataCleaner.process_query(sentence, self.model, self.word2vec, self.max_len)
         response = {'result': str(round(output*100,2))+'%', 'top_related': []}
         word_near=[]
-        for ridx, item in zip(self.idx, self.model.predict(x)[:, 1]):
+        for ridx, item in zip(self.idx, self.model.predict(self.x)[:, 1]):
             for i in self.deka:
                 if i[0]==self.deka_file.iloc[ridx]['sentence']:
                     response['top_related'].append({
