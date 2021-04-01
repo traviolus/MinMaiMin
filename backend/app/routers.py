@@ -30,7 +30,7 @@ router = APIRouter(
 def check_config(payload):
     if payload.msgType != 2:
         return randrange(49, 52), True
-    if not payload.victim or not payload.thirdPerson or payload.reaction or payload.question or payload.future:
+    if not payload.victim or not payload.thirdPerson or payload.reaction or payload.question or payload.future or payload.situation in [0, 2, 4]:
         return randrange(10, 20), True
     return randrange(30, 70), False
 

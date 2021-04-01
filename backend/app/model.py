@@ -38,12 +38,10 @@ class MinmaiminModel:
         self.model = load_model('../model_files/minmaimin_LSTM.h5')
         self.max_len = 100
         self.word2vec = word_vector.get_model()
-        print('got init!!!')
 
     def predict(self, sentence):
         word2vec = word_vector.get_model()
         output = DataCleaner.process_query(sentence, self.model, self.word2vec, self.max_len)
-        print('got predict!!!')
-        return output
+        return output*100
 
 model_obj = MinmaiminModel()
