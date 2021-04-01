@@ -36,13 +36,14 @@ class DataCleaner:
 class MinmaiminModel:
     def __init__(self):
         self.model = load_model('../model_files/minmaimin_LSTM.h5')
-        # self.deka_file = pd.read_csv("../model_files/dataframe.csv")
         self.max_len = 100
         self.word2vec = word_vector.get_model()
+        print('got init!!!')
 
     def predict(self, sentence):
         word2vec = word_vector.get_model()
         output = DataCleaner.process_query(sentence, self.model, self.word2vec, self.max_len)
-        return str(round(output*100,2))+'%'
+        print('got predict!!!')
+        return output
 
 model_obj = MinmaiminModel()

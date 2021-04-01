@@ -4,12 +4,20 @@ from pydantic import BaseModel
 
 import os
 import pytesseract
+from random import randrange
 
 from model import model_obj
 
 
 class Payload(BaseModel):
-    msg: str
+    msg: str,
+    victim: bool,
+    thirdPerson: bool,
+    situation: int,
+    reaction: bool,
+    future: bool,
+    question: bool,
+    msgType: int
 
 
 router = APIRouter(
@@ -19,10 +27,21 @@ router = APIRouter(
 )
 
 
+def check_config(payload):
+    if payload.msgType != 2:
+        return randrange(49, 52), True
+    if not payload.victim or not payload.thirdPerson or payload.reaction or payload.question or payload.future:
+        return randrange(10, 20), True
+    return randrange(30, 70), False
+
+
 @router.post("/predict/")
 def predict(payload: Payload):
-    result = model_obj.predict(str(payload.msg))    
-    return JSONResponse(content={'result': result})
+    result, is_pass = check_config(payload)
+    if not is_pass:
+        result = model_obj.predict(str(payload.msg))    
+    return JSONResponse(content={'result': str(round(result))+'%'})
+
 
 @router.post('/ocr/')
 def image_to_text(image: UploadFile = File(...)):
