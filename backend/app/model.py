@@ -18,7 +18,7 @@ class DataCleaner:
         return x
 
     @staticmethod
-    def process_query(st, model, word2vec, max_len=75):
+    def process_query(st, model, word2vec, max_len=100):
         x = np.expand_dims(DataCleaner.preprocess(st, word2vec, max_len), 0)
         out = model.predict(x)[0, 1]
         return out
