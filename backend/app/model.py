@@ -26,7 +26,7 @@ class DataCleaner:
 
 class MinmaiminModel:
     def __init__(self):
-        self.model = load_model('../model_files/model.h5')
+        self.model = load_model('../model_files/minmaimin.h5')
 
     def predict(self, sentence):
         word2vec = word_vector.get_model()
