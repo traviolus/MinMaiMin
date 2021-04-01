@@ -6,9 +6,6 @@ from model import MinmaiminModel
 
 class Payload(BaseModel):
     msg: str
-    description: Optional[str] = None
-    price: float
-    tax: Optional[float] = None
     
 
 router = APIRouter(
