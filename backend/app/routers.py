@@ -10,13 +10,13 @@ from model import model_obj
 
 
 class Payload(BaseModel):
-    msg: str,
-    victim: bool,
-    thirdPerson: bool,
-    situation: int,
-    reaction: bool,
-    future: bool,
-    question: bool,
+    msg: str
+    victim: bool
+    thirdPerson: bool
+    situation: int
+    reaction: bool
+    future: bool
+    question: bool
     msgType: int
 
 
