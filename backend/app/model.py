@@ -36,7 +36,7 @@ class DataCleaner:
 
 class MinmaiminModel:
     def __init__(self):
-        self.model = load_model('../model_files/minmaimin.h5')
+        self.model = load_model('../model_files/minmaimin_LSTM.h5')
         self.deka_file = pd.read_csv("../model_files/dataframe.csv")
         self.max_len = 100
         self.word2vec = word_vector.get_model()
