@@ -11,7 +11,7 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      value: 32,
+      value: 84,
     };
   }
   render() {
