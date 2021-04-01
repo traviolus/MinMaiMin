@@ -147,6 +147,7 @@ export default function SearchArea(props) {
         setReaction(null)
         setFuture(null)
         setQuestion(null)
+        setMsgType(null);
         setSnackOpen(true);
     }
 
