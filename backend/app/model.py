@@ -29,7 +29,7 @@ class MinmaiminModel:
         self.model = ''
 
     def load_model(self):
-        self.model = load_model('../')
+        self.model = load_model('../model_files/model.h5')
         print('load success.')
 
     def predict(self, sentence):
