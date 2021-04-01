@@ -29,7 +29,7 @@ class DataCleaner:
         '''
         Perform model prediction on string st
         '''
-        x = np.expand_dims(preprocess(st, word2vec, max_len), 0)
+        x = np.expand_dims(DataCleaner.preprocess(st, word2vec, max_len), 0)
         out = model.predict(x)[0, 1]
         return out
 
