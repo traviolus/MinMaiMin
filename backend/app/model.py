@@ -52,7 +52,7 @@ class MinmaiminModel:
     def predict(self, sentence):
         word2vec = word_vector.get_model()
         output = DataCleaner.process_query(sentence, self.model, self.word2vec, self.max_len)
-        response = {'result': str(round(output*100,2))+'%'), 'top_related': []}
+        response = {'result': str(round(output*100,2))+'%', 'top_related': []}
         word_near=[]
         for ridx, item in zip(self.idx, self.model.predict(x)[:, 1]):
             for i in self.deka:
