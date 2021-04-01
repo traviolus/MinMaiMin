@@ -19,4 +19,4 @@ router = APIRouter(
 def predict(payload: Payload):
     model_obj = MinmaiminModel()
     result = model_obj.predict(str(payload.msg))    
-    return JSONResponse(content={'result': result})
+    return JSONResponse(content={'result': float(result)})
