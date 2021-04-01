@@ -7,6 +7,7 @@ import LoadingModal from './components/LoadingModal';
 
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
   const [resultDate, setResultDate] = useState(new Date());
   const [showResultCard, setShowResultCard] = useState(false);
@@ -17,9 +18,11 @@ function App() {
 
   async function handleShowResult() {
     if (result === false) {
+      setLoading(true);
       setResult(!result);
       await timeout(3500);
       setShowResultCard(!showResultCard);
+      setLoading(false);
     }
   }
 
@@ -39,9 +42,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div style={{display: result ? 'block' : 'none'}}>
-        <LoadingModal props={result}/>
-      </div>
+      {loading ? <LoadingModal /> : <br></br>}
       <div style={{display: result ? 'none': 'block'}}>
         <SearchPage props={{'handleSubmit': handleShowResult, 'handleDateCalculate': handleDateCalculate}}/>
       </div>
