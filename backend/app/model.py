@@ -38,7 +38,7 @@ class DataCleaner:
         x = []
         for i in tqdm_notebook(range(len(df))):
             st = df['sentence'].iloc[i]
-            _x = np.expand_dims(preprocess(st, word2vec, max_len), 0)
+            _x = np.expand_dims(DataCleaner.preprocess(st, word2vec, max_len), 0)
             x.append(_x)
         x = np.concatenate(x)
         y = np.array(df['y'])
