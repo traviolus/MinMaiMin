@@ -9,9 +9,9 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-model = MinmaiminModel().load_model()
-
-@router.post("/predict/")
-def predict(payload: payload):
-    result = model.predict(payload.msg)
+model_obj = MinmaiminModel().load_model_obj()
+print(model_obj)
+@router.get("/predict/")
+def predict(msg: str):
+    result = model_obj.predict(msg)    
     return JSONResponse(content={'result': result})
