@@ -40,7 +40,7 @@ def predict(payload: Payload):
     result, is_pass = check_config(payload)
     if not is_pass:
         result = model_obj.predict(str(payload.msg))    
-    return JSONResponse(content={'result': str(round(result))+'%'})
+    return JSONResponse(content={'result': round(result)})
 
 
 @router.post('/ocr/')
