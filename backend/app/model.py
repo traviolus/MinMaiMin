@@ -28,7 +28,7 @@ class MinmaiminModel:
     def __init__(self):
         self.model = ''
 
-    def load_model(self):
+    def load_model_obj(self):
         self.model = load_model('../model_files/model.h5')
         print('load success.')
 
