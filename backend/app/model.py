@@ -44,3 +44,5 @@ class MinmaiminModel:
         word2vec = word_vector.get_model()
         output = DataCleaner.process_query(sentence, self.model, self.word2vec, self.max_len)
         return str(round(output*100,2))+'%'
+
+model_obj = MinmaiminModel()

@@ -198,8 +198,9 @@ export default function SearchArea(props) {
                             <Button
                                 variant="contained"
                                 component="label"
+                                style={{padding: '7px 20px'}}
                             >
-                                Upload Image
+                                เลือกรูปภาพ
                                 <input
                                     type="file"
                                     hidden

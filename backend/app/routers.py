@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, File, UploadFile
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from model import MinmaiminModel
+from model import model_obj
 
 class Payload(BaseModel):
     msg: str
@@ -17,6 +17,9 @@ router = APIRouter(
 
 @router.post("/predict/")
 def predict(payload: Payload):
-    model_obj = MinmaiminModel()
     result = model_obj.predict(str(payload.msg))    
     return JSONResponse(content={'result': result})
+
+@router.post('/ocr/')
+def image_to_text(file: UploadFile):
+    return JSONResponse(content={'result': ''})
