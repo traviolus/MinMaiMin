@@ -21,5 +21,5 @@ router = APIRouter(
 @router.post("/predict/")
 def predict(payload: Payload):
     model_obj = MinmaiminModel()
-    result = model_obj.predict(msg)    
+    result = model_obj.predict(str(payload.msg))    
     return JSONResponse(content={'result': result})
