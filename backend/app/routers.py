@@ -1,7 +1,15 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
 from model import MinmaiminModel
+
+class Payload(BaseModel):
+    msg: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+    
 
 router = APIRouter(
     prefix="/api",
@@ -10,8 +18,8 @@ router = APIRouter(
 )
 
 
-@router.get("/predict/")
-def predict(msg: str):
-    model_obj = MinmaiminModel().load_model_obj()
+@router.post("/predict/")
+def predict(payload: Payload):
+    model_obj = MinmaiminModel()
     result = model_obj.predict(msg)    
     return JSONResponse(content={'result': result})
