@@ -28,6 +28,7 @@ function App() {
       }).then((response) => {
         setPredictedValue(response.data.result);
         setShowResultCard(!showResultCard);
+        setLoading(false);
       }).catch((error) => {
         console.log(error);
       });
