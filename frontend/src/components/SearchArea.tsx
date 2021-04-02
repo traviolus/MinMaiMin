@@ -16,9 +16,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
+import { useMediaQuery } from 'react-responsive';
 
 const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
 const msgTypeArray = ['verdict', 'court', 'none'];
+
 
 function getModalStyle() {
     const top = 50;
@@ -35,7 +37,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            width: '83%',
+            // width: '83%',
             alignItems: 'center',
             margin: 'auto auto'
         },
@@ -83,6 +85,8 @@ export default function SearchArea(props) {
     const [msgType, setMsgType] = useState<number | null>(null);
     const [snackOpen, setSnackOpen] = useState(false);
     const [warningOpen, setWarningOpen] = useState(false);
+
+    const isMobile = useMediaQuery({ query: '(max-width: 800px)' });
 
     function handleDateChange(date: Date | null) {
         setDate(date);
@@ -185,7 +189,7 @@ export default function SearchArea(props) {
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{ width: isMobile ? '100%' : '83%' }}>
             <form onSubmit={handleSubmit}>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <Grid container spacing={3} justify='flex-start'>
@@ -223,8 +227,8 @@ export default function SearchArea(props) {
                         </Grid>
                         <Grid item xs={3} />
 
-                        <Grid item xs={1} />
-                        <Grid item xs={10} className={classes.dropdown}>
+                        {isMobile ? <br></br> : <Grid item xs={1} />}
+                        <Grid item xs={isMobile ? 12 : 10} className={classes.dropdown}>
                             <Paper elevation={2} className={classes.paper}>
                                 โดนด่าอย่างไร?
                             <Tooltip title='สถานการณ์ขณะที่ถูกด่า'>
@@ -241,10 +245,10 @@ export default function SearchArea(props) {
                                 </RadioGroup>
                             </Paper>
                         </Grid>
-                        <Grid item xs={1} />
+                        {isMobile ? <br></br> : <Grid item xs={1} />}
 
-                        <Grid item xs={1} />
-                        <Grid item xs={10}>
+                        {isMobile ? <br></br> : <Grid item xs={1} />}
+                        <Grid item xs={isMobile ? 12 : 10}>
                             <Grid container spacing={2}>
                                 <Grid item xs={4} className={classes.dropdown}>
                                     <Paper elevation={2} className={classes.paper}>
@@ -290,10 +294,10 @@ export default function SearchArea(props) {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={1} />
 
-                        <Grid item xs={1} />
-                        <Grid item xs={10}>
+                        {isMobile ? <br></br> : <Grid item xs={1} />}
+                        {isMobile ? <br></br> : <Grid item xs={1} />}
+                        <Grid item xs={isMobile ? 12 : 10}>
                             <Grid container spacing={2} alignItems='stretch'>
                                 <Grid item xs={4} className={classes.dropdown}>
                                     <Paper elevation={2} className={classes.paper}>
@@ -340,10 +344,10 @@ export default function SearchArea(props) {
                                 </Grid>
                             </Grid>
                             </Grid>
-                            <Grid item xs={1} />
 
-                            <Grid item xs={1} />
-                            <Grid item xs={10}>
+                            {isMobile ? <br></br> : <Grid item xs={1} />}
+                            {isMobile ? <br></br> : <Grid item xs={1} />}
+                            <Grid item xs={isMobile ? 12 : 10}>
                                 <Paper elevation={2} className={classes.paper}>
                                     <p style={{ marginBottom: '0px', marginTop: '0px' }}>
                                         วันที่เกิดเหตุการณ์
@@ -369,7 +373,7 @@ export default function SearchArea(props) {
                                     </MuiPickersUtilsProvider>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={1} />
+                            {isMobile ? <br></br> : <Grid item xs={1} />}
 
                         <Grid item xs={3} />
                         <Grid item xs={3} style={{ margin: '15px auto' }}>
