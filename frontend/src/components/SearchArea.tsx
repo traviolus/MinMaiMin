@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Paper from '@material-ui/core/Paper';
 import { useMediaQuery } from 'react-responsive';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -69,6 +70,7 @@ export default function SearchArea(props) {
     const [msgType, setMsgType] = useState<number | null>(null);
     const [snackOpen, setSnackOpen] = useState(false);
     const [warningOpen, setWarningOpen] = useState(false);
+    const [file, setFile] = useState(null);
 
     const isMobile = useMediaQuery({ query: '(max-width: 800px)' });
 
@@ -172,6 +174,22 @@ export default function SearchArea(props) {
         return false;
     }
 
+    function handleOCR(e) {
+        setFile(e.target.files[0]);
+        const formData = new FormData();
+        formData.append('image', file);
+        axios({
+            method: "post",
+            url: "http://34.87.85.100:8000/api/ocr/",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        }).then((response) => {
+            setText(response.data.result);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
         <div className={classes.root} style={{ width: isMobile ? '100%' : '83%' }}>
             <form onSubmit={handleSubmit}>
@@ -206,6 +224,7 @@ export default function SearchArea(props) {
                                 <input
                                     type="file"
                                     hidden
+                                    onChange={handleOCR}
                                 />
                             </Button>
                         </Grid>
