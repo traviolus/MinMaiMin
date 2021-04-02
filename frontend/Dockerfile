@@ -12,7 +12,7 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN npm install yarn --force
 RUN yarn install --silent --force
-RUN yarn install react-scripts@3.4.1 -g --silent
+RUN yarn global add react-scripts@3.4.1
 
 # add app
 COPY . ./
