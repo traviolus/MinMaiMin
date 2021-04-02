@@ -82,25 +82,7 @@ export default function SearchArea(props) {
     const [question, setQuestion] = useState<boolean | null>(null);
     const [msgType, setMsgType] = useState<number | null>(null);
     const [snackOpen, setSnackOpen] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalStyle] = useState(getModalStyle);
-
-    const modalBody = (
-        <div style={modalStyle} className={classes.modalPaper}>
-            <h2 id="simple-modal-title">เลือกสถานการณ์</h2>
-            <p id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-        </div>
-    );
-
-    const handleModalOpen = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalClose = () => {
-        setModalOpen(false);
-    };
+    const [warningOpen, setWarningOpen] = useState(false);
 
     function handleDateChange(date: Date | null) {
         setDate(date);
@@ -158,7 +140,23 @@ export default function SearchArea(props) {
         setSnackOpen(false);
     };
 
-    function handleSubmit() {
+    function handleWarningClose(event: React.SyntheticEvent | React.MouseEvent, reason?: string) {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setWarningOpen(false);
+    }
+
+    function hasNull(target) {
+        for (var member in target) {
+            if (target[member] == null)
+                return true;
+        }
+        return false;
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
         const params = {
             msg: text,
             victim: victim,
@@ -168,6 +166,11 @@ export default function SearchArea(props) {
             future: future,
             question: question,
             msgType: msgType
+        }
+        const check_null = hasNull(params);
+        if (check_null) {
+            setWarningOpen(true);
+            return;
         }
         props.props.props.handleSubmit(params);
         props.props.props.handleDateCalculate(date);
@@ -396,6 +399,23 @@ export default function SearchArea(props) {
                     <React.Fragment>
                         <Button color="secondary" size="small" onClick={handleSnackClose}>
                             ปิด
+                    </Button>
+                    </React.Fragment>
+                }
+            />
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                open={warningOpen}
+                autoHideDuration={7000}
+                onClose={handleWarningClose}
+                message="กรุณาป้อนข้อมูลให้ครบ"
+                action={
+                    <React.Fragment>
+                        <Button color="secondary" size="small" onClick={handleWarningClose}>
+                            รับทราบ
                     </Button>
                     </React.Fragment>
                 }
