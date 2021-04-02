@@ -22,15 +22,12 @@ function App() {
     if (result === false) {
       setLoading(true);
       setResult(!result);
-      // await timeout(3500);
-      axios.post('http://34.87.85.100:8000/api/predict/', {
+      const res = await axios.post('http://34.87.85.100:8000/api/predict/', {
         ...props
-      }).then((response) => {
-        setPredictedValue(response.data.result);
-        setShowResultCard(!showResultCard);
-      }).catch((error) => {
-        console.log(error);
       });
+      setPredictedValue(res.data.result);
+      setShowResultCard(!showResultCard);
+      setLoading(false);
     }
   }
 

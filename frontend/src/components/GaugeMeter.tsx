@@ -16,6 +16,12 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
       value: props.predictedValue,
     };
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.predictedValue !== prevProps.predictedValue)
+      this.setState({value: this.props.predictedValue});
+  }
+
   render() {
     const revertedValue = 100 - this.state.value;
     let r = Math.floor(revertedValue * 2.55);
