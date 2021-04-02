@@ -23,46 +23,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function LoadingModal(handle) {
+export default function LoadingModal() {
     const classes = useStyles();
-    const [progress, setProgress] = useState(0);
-    const [open, setOpen] = useState(false);
-    const [isMount, setIsMount] = useState(true);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleToggle = () => {
-        setOpen(!open);
-    };
-    
-    function startTimer() {
-        return setInterval(() => {
-            setProgress((prevProgress) => {
-                if (prevProgress === 153) {
-                    setOpen(false);
-                }
-                return prevProgress + 1;
-            });
-        }, 25);
-    }
-
-    useEffect(() => {
-        if (isMount) {
-            setIsMount(false);
-            return;
-        }
-        const timer = startTimer();
-
-        handleToggle();
-    }, [handle.props]);
 
     return (
         <div className={classes.root}>
-            <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+            <Backdrop className={classes.backdrop} open={true}>
                 <Paper elevation={24}>
-                    <CircularProgress variant='determinate' value={progress} style={{margin: '30px'}} size={100}/>
+                    <CircularProgress variant='indeterminate' style={{margin: '30px'}} size={100}/>
                 </Paper>
             </Backdrop>
         </div>
