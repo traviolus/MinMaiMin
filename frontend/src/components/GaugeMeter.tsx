@@ -1,7 +1,9 @@
 import React from "react";
 import Gauge from "react-svg-gauge";
 
-interface AppProps {}
+interface AppProps {
+  predictedValue: number;
+}
 
 interface AppState {
   value: number;
@@ -11,7 +13,7 @@ export default class GaugeMeter extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      value: 84,
+      value: props.predictedValue,
     };
   }
   render() {

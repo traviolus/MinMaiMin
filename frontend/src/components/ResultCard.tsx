@@ -18,7 +18,7 @@ export default function ResultCard(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <GaugeMeter />
+      <GaugeMeter predictedValue={props.props.predictedValue}/>
       <ReportCard props={props}/>
       <ResultButtons props={props}/>
     </div>

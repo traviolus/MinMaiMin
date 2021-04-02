@@ -159,7 +159,17 @@ export default function SearchArea(props) {
     };
 
     function handleSubmit() {
-        props.props.props.handleSubmit();
+        const params = {
+            msg: text,
+            victim: victim,
+            thirdPerson: thirdPerson,
+            situation: situation,
+            reaction: reaction,
+            future: future,
+            question: question,
+            msgType: msgType
+        }
+        props.props.props.handleSubmit(params);
         props.props.props.handleDateCalculate(date);
     }
 
