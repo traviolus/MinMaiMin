@@ -1,7 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { Report } from "../model/report.model";
 import Typography from "@material-ui/core/Typography";
 
 function dateFormat(date: Date): string {

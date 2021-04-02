@@ -15,23 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Paper from '@material-ui/core/Paper';
-import Modal from '@material-ui/core/Modal';
 import { useMediaQuery } from 'react-responsive';
-
-const situationArray = ['inperson', 'public', 'chat', 'social', 'videocall'];
-const msgTypeArray = ['verdict', 'court', 'none'];
-
-
-function getModalStyle() {
-    const top = 50;
-    const left = 50;
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
 
 
 const useStyles = makeStyles((theme: Theme) =>

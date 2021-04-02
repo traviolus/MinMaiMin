@@ -13,11 +13,7 @@ function App() {
   const [resultDate, setResultDate] = useState(new Date());
   const [showResultCard, setShowResultCard] = useState(false);
   const [predictedValue, setPredictedValue] = useState(0);
-
-  function timeout(delay: number) {
-    return new Promise( res => setTimeout(res, delay) );
-  }
-
+  
   async function handleShowResult(props) {
     if (result === false) {
       setLoading(true);
